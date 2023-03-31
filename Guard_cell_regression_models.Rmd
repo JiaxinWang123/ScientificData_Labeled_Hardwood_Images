@@ -1,0 +1,140 @@
+---
+title: "Leaf_Stomatal_Guard_cell_models"
+author: "Jiaxin Wang"
+date: "2023-03-31"
+output:
+  word_document: default
+  html_document: default
+  pdf_document: default
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Load data
+
+```{r, echo=FALSE}
+library(readxl)
+```
+
+```{r}
+guardcell <- read_excel("D:/STOMATA/Stomata pictures from Heidi/images_for_guard cell estimation/model/guardcell.xlsx", 
+                        sheet = "Sheet1")
+```
+
+
+## Plot and simple linear regression for guard cell width
+
+```{r}
+plot(guardcell$w~guardcell$g_width, ylab = "Guardcell width (pixels)", xlab = "Whole_stomata width (pixels)")
+```
+
+
+Fit a multivariate linear regression model to predict guard cell width
+
+
+```{r}
+lm01 <- lm(g_width~w+h+w2+h2, data = guardcell)
+summary(lm01)
+```
+
+Get residuals and convert them to absolute values and use 1/absolute residuals as the weights to fit a weighted multivariate linear regression model
+
+
+```{r}
+guardcell$residuals1 <- abs(residuals(lm01))
+
+lm01.wt <- lm(g_width~w+h+w2+h2, data = guardcell, weights = 1/residuals1)
+summary(lm01.wt)
+```
+
+Check the assumptions
+
+```{r}
+plot(lm01.wt)
+```
+
+
+
+Fit a multivariate linear regression model to predict guard cell length
+
+```{r}
+lm02 <- lm(g_length~w+h+w2+h2, data = guardcell)
+summary(lm02)
+```
+
+
+Get residuals and convert them to absolute values and use 1/absolute residuals as the weights to fit a weighted multivariate linear regression model
+
+```{r}
+guardcell$residuals2 <- abs(residuals(lm02))
+
+lm02.wt <- lm(g_length~w+h+w2+h2, data = guardcell, weights = 1/residuals2)
+summary(lm02.wt)
+```
+
+
+Check the assumptions
+
+```{r}
+plot(lm02.wt)
+```
+
+
+Generate predicted width and length of leaf stomatal guard cell
+
+```{r}
+guardcell$predict_width <- predict(lm01.wt)
+
+guardcell$predict_length <- predict(lm02.wt)
+```
+
+
+## Plot predicted vs ImageJ measured leaf stomatal guard cell width and length
+
+```{r}
+plot(guardcell$predict_width,guardcell$g_width, xlab = "Predicted guard cell width", ylab = "Measured guard cell width")
+abline(a=0, b=1, col = "blue")
+
+plot(guardcell$predict_length,guardcell$g_length, xlab = "Predicted guard cell length", ylab = "Measured guard cell length")
+abline(a=0, b=1, col = "blue")
+```
+
+
+Define Bias and RMSE function to calculate Bias and RMSE 
+
+
+```{r}
+bias <-  function(obs, pred, n){
+  bias <-  round(sum(obs - pred)/length(obs), digit=4)
+  bias.perc <-  round(bias/mean(obs)*100, digit=4)
+  out  <-  c(bias,bias.perc)
+  return(out)
+}
+
+RMSE <-  function(obs, pred, n){
+  RMSE <-  round(sqrt(sum((obs - pred)^2)/length(obs)), digit=4)
+  RMSE.perc <-  round(RMSE/mean(obs)*100, digit=4)
+  out <-  c(RMSE,RMSE.perc)
+  return(out)
+}
+```
+
+
+```{r}
+RMSE(guardcell$g_width,guardcell$predict_width,length(guardcell$g_width))
+
+RMSE(guardcell$g_length,guardcell$predict_length,length(guardcell$g_length))
+```
+
+
+
+
+
+
+
+
+
+
+
