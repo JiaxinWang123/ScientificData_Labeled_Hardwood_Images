@@ -27,15 +27,18 @@ Populus$hardwood_populus <- "Populus L."
 
 combined_data <- rbind.data.frame(Hardwood,Populus)
 
+sum(is.na(combined_data$Density))
+
+combined_data <- subset.data.frame(combined_data,!is.na(combined_data$Density))
 
 library(tidyverse)
 
 
 
 p <- combined_data %>%
-  ggplot(aes(x=as.numeric(Mean_WST_No), fill=hardwood_populus)) +
-  geom_histogram(alpha=0.4, position = 'identity') +
-  geom_vline(xintercept=quantile(as.numeric(combined_data$Mean_WST_No)), linetype="dashed", linewidth=0.25, color = "blue")+
+  ggplot(aes(x=as.numeric(Density), fill=hardwood_populus)) +
+  geom_histogram(alpha=0.6, position = 'identity') +
+  geom_vline(xintercept=quantile(as.numeric(combined_data$Density)), linetype="dashed", linewidth=0.25, color = "blue")+
   scale_fill_manual(values=c("#008F9D", "#F08721")) +
   theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=1),
         panel.background = element_rect(fill = "transparent"),
@@ -43,9 +46,9 @@ p <- combined_data %>%
                                         colour = "gray"), 
         panel.grid.minor = element_line(size = 0.05, linetype = 'dashed',
                                         colour = "gray"))+
-  stat_bin(bins = 30, alpha=0.6)+
+  stat_bin(bins = 30, alpha=0.4)+
   labs(fill="")+
-  xlab(expression(Number ~of ~Stomata))+
+  xlab(expression(stomata ~mm^-2))+
   ylab(expression(Count))
 
 p
@@ -58,12 +61,12 @@ hist(Hardwood_and_Populus_datasets$Mean_WST_No[Hardwood_and_Populus_datasets$Sci
 
 library(tidyverse)
 
-mean_stm <- Hardwood_and_Populus_datasets %>%
+mean_stm <- combined_data %>%
   group_by(Scientific_name) %>%
-  summarise(mean_stm = mean(Mean_WST_No))
+  summarise(mean_stm = mean(Density))
 
 ggplot()+
-  geom_line(aes(Scientific_name, Mean_WST_No,  color = Scientific_name),data = Hardwood_and_Populus_datasets)+
+  geom_line(aes(Scientific_name, Density,  color = Scientific_name),data = combined_data)+
   geom_point(aes(Scientific_name, mean_stm, color = Scientific_name),data = mean_stm)+
   theme(axis.text.x = element_text(angle = 0, vjust = 0.5, hjust=1),
         panel.background = element_rect(fill = "transparent"),
@@ -73,5 +76,7 @@ ggplot()+
                                         colour = "gray"),
         legend.position="none")+
   xlab("Scientific name")+
-  ylab("Mean Number of Stomata")+
+  ylab(expression(stomata ~mm^-2))+
   coord_flip()
+
+
