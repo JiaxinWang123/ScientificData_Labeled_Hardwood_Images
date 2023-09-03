@@ -1,4 +1,4 @@
-## Labeled Temperate Hardwood Tree Stomatal Images Datasets: Seven Taxa of Populus and 17 Other Species
+## Labeled Temperate Hardwood Tree Stomatal Images Datasets: Seven Taxa of Populus and 17 Hardwood Species
 
 Datasets have been made available on figshare:
 
