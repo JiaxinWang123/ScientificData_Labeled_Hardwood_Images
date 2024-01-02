@@ -2,7 +2,9 @@
 
 Datasets have been made available on figshare:
 
-Wang, Jiaxin; Renninger, Heidi J. (2023): Labeled 17 Hardwood Species and 55 Genotypes of Populus Stomatal Images Datasets. figshare. Dataset. https://doi.org/10.6084/m9.figshare.22255873
+Wang, Jiaxin; Renninger, Heidi J. (2023): Labeled 17 Hardwood Species and 55 Genotypes of _Populus_ Stomatal Images Datasets. figshare. Dataset. https://doi.org/10.6084/m9.figshare.22255873
+
+Wang, J., Renninger, H.J. & Ma, Q. Labeled temperate hardwood tree stomatal image datasets from seven taxa of _Populus_ and 17 hardwood species. Sci Data 11, 1 (2024). https://doi.org/10.1038/s41597-023-02657-3
 
 ## StoManager1 is available here [StoManager1](https://github.com/JiaxinWang123/StoManager1)
 
