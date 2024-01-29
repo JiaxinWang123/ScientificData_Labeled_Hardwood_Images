@@ -9,7 +9,7 @@ Wang, J., Renninger, H.J. & Ma, Q. Labeled temperate hardwood tree stomatal imag
 ## StoManager1 is available here [StoManager1](https://github.com/JiaxinWang123/StoManager1)
 
 - **Research Article**:
-  - Jiaxin Wang*, Heidi J. Renninger, Qin Ma, Shichao Jin, Measuring newly developed stomatal and guard cell metrics for plant physiology and growth using StoManager1, Plant Physiology, 2024. (In press)
+  - Jiaxin Wang*, Heidi J. Renninger, Qin Ma, Shichao Jin, Measuring newly developed stomatal and guard cell metrics for plant physiology and growth using StoManager1, Plant Physiology, (2024). https://doi.org/10.1093/plphys/kiae049
   - Detailed explanation of StoManager1 can be found in this preprint [![arXiv](https://img.shields.io/badge/arXiv-arXiv:2304.10450-b31b1b.svg?style=plastic)](https://arxiv.org/abs/arXiv:2304.10450) 
 
 Standalone executable (Windows .exe) StoManager1 can be downloaded from [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.7686022.svg)](https://doi.org/10.5281/zenodo.7686022) 
