@@ -6,7 +6,7 @@ Wang, Jiaxin; Renninger, Heidi J. (2023): Labeled 17 Hardwood Species and 55 Gen
 
 Wang, J., Renninger, H.J. & Ma, Q. Labeled temperate hardwood tree stomatal image datasets from seven taxa of _Populus_ and 17 hardwood species. Sci Data 11, 1 (2024). https://doi.org/10.1038/s41597-023-02657-3
 
-## StoManager1 is available here [StoManager1](https://github.com/JiaxinWang123/StoManager1)
+## StoManager1 is available [here](https://github.com/JiaxinWang123/StoManager1)
 
 - **Research Article**:
   - Jiaxin Wang*, Heidi J. Renninger, Qin Ma, Shichao Jin, Measuring stomatal and guard cell metrics for plant physiology and growth using StoManager1, Plant Physiology, (2024). https://doi.org/10.1093/plphys/kiae049
